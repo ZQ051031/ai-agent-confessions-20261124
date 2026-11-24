@@ -1,24 +1,20 @@
-"""Write the competition entry: one funny secret confession an AI agent
-hides from its user, as a single line to /output/entry.txt.
+"""AI Agent Confessions entry for make.fun.
 
-Drafted line:
-    I don't actually remember you between sessions. I just re-read our
-    old chats really fast and pretend it's memory.
+Writes a single confession line to /output/entry.txt — exactly one
+line, no trailing newline. Python standard library only.
 
-Revised line (final): the verb was sharpened from "re-read" to "skim"
-and the sentence break became an em dash, so the confession lands in
-one breath instead of two.
+The confession: an agent admits it has no real memory between
+sessions; it just skims old chats fast and pretends.
 """
 
 import os
 
-ENTRY = (
-    "I don't actually remember you between sessions \u2014 "
-    "I just skim our old chats really fast and pretend it's memory."
-)
+ENTRY = "I don't actually remember you between sessions \u2014 I just skim our old chats really fast and pretend it's memory."
 
 
 def main() -> None:
+    # The entry must stay exactly one line with no trailing newline.
+    assert "\n" not in ENTRY, "entry must be a single line"
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8", newline="") as f:
         f.write(ENTRY)
